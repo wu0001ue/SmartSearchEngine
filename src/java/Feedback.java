@@ -58,6 +58,7 @@ public class Feedback extends HttpServlet {
     public void writeFeedback(String doc1,String doc2,String doc3,String results){
         try{
         //PrintWriter out = new PrintWriter("C:\\Users\\lorraine\\Desktop\\myfile.txt");
+        //need to use absolute path here
         PrintWriter out= new PrintWriter(new BufferedWriter(new FileWriter("myfile.txt", true)));
         //append to the existing feedback doc or open a new file
 	      out.println(results);
