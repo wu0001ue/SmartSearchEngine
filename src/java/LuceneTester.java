@@ -1,7 +1,5 @@
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
@@ -18,24 +16,24 @@ import org.apache.lucene.search.highlight.QueryScorer;
 import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.search.highlight.SimpleSpanFragmenter;
 import org.apache.lucene.util.Version;
+import org.apache.tika.exception.TikaException;
+import org.xml.sax.SAXException;
 
 public class LuceneTester {
 	
-   //String indexDir = "./src/java/index";
    String indexDir = "./index";
    int k = indexDir.hashCode();
-   //String dataDir = "./src/java/data";
    String dataDir = "./data";
    Indexer indexer;
    Searcher searcher;
    Analyzer analyzer;
 
-   public static void main(String[] args) {
+   public static void main(String[] args) throws SAXException, TikaException {
       LuceneTester tester;
       try {
          tester = new LuceneTester();
          tester.createIndex();
-         tester.search("search engine");
+         tester.search("SmartFusion2");
       } catch (IOException e) {
          e.printStackTrace();
       } catch (ParseException e) {
@@ -47,7 +45,7 @@ public class LuceneTester {
 	   analyzer = new StandardAnalyzer(Version.LUCENE_43);
    }
 
-   private void createIndex() throws IOException{
+   private void createIndex() throws IOException, SAXException, TikaException{
       indexer = new Indexer(indexDir);
       int numIndexed;
       long startTime = System.currentTimeMillis();	
@@ -58,15 +56,14 @@ public class LuceneTester {
          +(endTime-startTime)+" ms");		
    }
 
-   public ArrayList<String> search(String searchQuery) throws IOException, ParseException{
+   private void search(String searchQuery) throws IOException, ParseException{
 	  QueryParser parser = new QueryParser(Version.LUCENE_43,LuceneConstants.CONTENTS,this.analyzer);
 	  Query q = parser.parse(searchQuery);
-	  SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<mark>","</mark>");
+	  SimpleHTMLFormatter formatter =
+				new SimpleHTMLFormatter("<mark>","</mark>");
 	  QueryScorer scorer = new QueryScorer(q,LuceneConstants.CONTENTS);
 	  Highlighter highlighter = new Highlighter(formatter,scorer);
 	  highlighter.setTextFragmenter(new SimpleSpanFragmenter(scorer));
-          ArrayList<String> results = new ArrayList<String>();
-          
       searcher = new Searcher(indexDir);
       long startTime = System.currentTimeMillis();
       TopDocs hits = searcher.search(searchQuery);
@@ -74,30 +71,23 @@ public class LuceneTester {
    
       System.out.println(hits.totalHits +
          " documents found. Time :" + (endTime - startTime));
+      //TokenStream tokens = null;
       String result = null;
-
+      
       for(ScoreDoc scoreDoc : hits.scoreDocs) {
          Document doc = searcher.getDocument(scoreDoc);
          String text = doc.get(LuceneConstants.CONTENTS);
+         //System.out.println(text.substring(0, 100));
          //tokens = analyzer.tokenStream("content",new StringReader(LuceneConstants.CONTENTS));
-            try {
-                    result = highlighter.getBestFragment(analyzer, LuceneConstants.CONTENTS, text);
-            } catch (InvalidTokenOffsetsException e) {
-                    e.printStackTrace();
-            }
+			try {
+				result = highlighter.getBestFragment(analyzer, LuceneConstants.CONTENTS, text);
+			} catch (InvalidTokenOffsetsException e) {
+				e.printStackTrace();
+			}
             System.out.println("File: "
             + doc.get(LuceneConstants.FILE_PATH));
             System.out.println(result);
-            results.add(doc.get(LuceneConstants.FILE_PATH) + "," + result);
       }
       searcher.close();
-      return results;
    }
-   
-   public ArrayList<String> testSearch(String searchQuery) throws IOException, ParseException {
-       createIndex();
-       ArrayList<String> results = search(searchQuery);
-       return results;
-   }
-      
 }
