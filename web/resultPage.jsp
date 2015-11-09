@@ -68,10 +68,10 @@
 	<div class="panel panel-default">
                 <div class="panel-heading"><b>Files Returned</b></div>                
                 <div class="panel-body"> 
-                    <% String searchTerm=(String) request.getAttribute("searchTerm");%>
+                    <% String searchTerm=(String) request.getAttribute("searchTest");%>
                     <% ArrayList<String> results = (ArrayList<String>) request.getAttribute("searchResult"); %>  
                     <% StringBuilder sb = new StringBuilder();
-                    sb.append("Search Term: "+searchTerm);
+                    sb.append("Search Term: "+searchTerm+"\n");
                     sb.append("Documents Retrieved: ");%>
                     <% for (String r:results) { %>
                     <tr>
