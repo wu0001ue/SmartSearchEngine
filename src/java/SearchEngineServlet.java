@@ -56,6 +56,7 @@ public class SearchEngineServlet extends HttpServlet {
             try {
                 //lt.search(searchTerm);
                 ArrayList<String> results = lt.testSearch(searchTerm);
+                request.setAttribute("searchTest", searchTerm);
                 request.setAttribute("searchResult", results);              
                 nextView = "resultPage.jsp";
             } catch (Exception e) {
