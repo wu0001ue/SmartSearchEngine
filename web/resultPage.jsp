@@ -68,17 +68,27 @@
 	<div class="panel panel-default">
                 <div class="panel-heading"><b>Files Returned</b></div>                
                 <div class="panel-body"> 
+<<<<<<< HEAD
                     <% String searchTerm=(String) request.getAttribute("searchTest");%> 
+=======
+                    <% String searchTerm=(String) request.getAttribute("searchTest");%>
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
                     <% ArrayList<String> results = (ArrayList<String>) request.getAttribute("searchResult"); %>  
                     <% StringBuilder sb = new StringBuilder();
                     sb.append("Search Term: "+searchTerm+"\n");
                     sb.append("Documents Retrieved: ");%>
                     <% for (String r:results) { %>
                     <tr>
+<<<<<<< HEAD
                         <td><a href="<%= r.split(",")[0]%>"><%=r.split(",")[0]%> </a></td> <br> 
                         <td><%= r.split(",")[1] %></td> <br>
                     </tr> 
                    
+=======
+                        <td><%= r.split(",")[0] %></td> <br>
+                        <td><%= r.split(",")[1] %></td> <br>
+                    </tr>
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
                     <% sb.append(r.split(",")[0]);} %>                          
                 <br>
 		<p><b>Which are the top 3 most relevant articles?</b></p>

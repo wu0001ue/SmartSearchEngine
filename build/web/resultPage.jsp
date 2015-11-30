@@ -1,8 +1,12 @@
 <%-- 
     Document   : searchPage
     Created on : Nov 3, 2015, 8:59:06 AM
+<<<<<<< HEAD
     Last Modified: Nov 8, 2015
     Author     : maywu, yinting
+=======
+    Author     : maywu
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 --%>
 
 
@@ -67,6 +71,7 @@
   
 	<div class="panel panel-default">
                 <div class="panel-heading"><b>Files Returned</b></div>                
+<<<<<<< HEAD
                 <div class="panel-body"> 
                     <% String searchTerm=(String) request.getAttribute("searchTest");%> 
                     <% ArrayList<String> results = (ArrayList<String>) request.getAttribute("searchResult"); %>  
@@ -99,13 +104,46 @@
                         </div>
 		<br><br>
                 <!--button type="submit" class="btn btn-primary" onclick = "genFile()" id="submitBtn">Send Feedback</button>
+=======
+                <div class="panel-body">  
+                    <% ArrayList<String> results = (ArrayList<String>) request.getAttribute("searchResult"); %>                   
+                    <% for (String r:results) { %>
+                    <tr>
+                        <td><%= r.split(",")[0] %></td> <br>
+                        <td><%= r.split(",")[1] %></td> <br>
+                    </tr>
+                    <% } %>                          
+                <br>
+		<p><b>Which are the top 3 most relevant articles?</b></p>
+			
+                <form class="form-inline" action="UserInputServlet">
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                        <label for="article1">Rank 1</label>
+                        <input type="text" class="form-control" id="doc1" placeholder="(article number)">
+                        </div>
+                        <div class="col-xs-4">
+                        <label for="article2">Rank 2</label>
+                        <input type="text" class="form-control" id="doc2" placeholder="(article number)">
+                        </div>
+                        <div class="col-xs-4">
+                        <label for="article3">Rank 3</label>
+                        <input type="text" class="form-control" id="doc3" placeholder="(article number)">
+                        </div>
+		<br><br>
+                <button type="submit" class="btn btn-primary" onclick = "genFile()" id="submitBtn">Send Feedback</button>
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
                 <p id="demo"></p>
                 <script>
                     function genFile() {
                         document.getElementById("demo").innerHTML = "Hello World";
                     }
+<<<<<<< HEAD
                 </script-->
                 <button type="submit" class="btn btn-primary"  name="feedbackbut" value="<%=sb.toString()%>">Send Feedback</button>
+=======
+                </script>
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
                 </div>
 		</form>
         </div>
@@ -116,3 +154,8 @@
 <body>
 </body>
 </html>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88

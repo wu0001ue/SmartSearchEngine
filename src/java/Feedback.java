@@ -19,7 +19,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import java.util.UUID;
+=======
+
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 
 @WebServlet(urlPatterns = {"/Feedback"})
 public class Feedback extends HttpServlet {
@@ -57,6 +61,7 @@ public class Feedback extends HttpServlet {
     
     public void writeFeedback(String doc1,String doc2,String doc3,String results){
         try{
+<<<<<<< HEAD
         UUID uid=UUID.randomUUID();
         //PrintWriter out = new PrintWriter("C:\\Users\\lorraine\\Desktop\\myfile.txt");
         PrintWriter out= new PrintWriter(new BufferedWriter(new FileWriter("C:\\Users\\lorraine\\Desktop\\querylog.txt", true)));
@@ -70,6 +75,17 @@ public class Feedback extends HttpServlet {
         out2.println("Rank 3: "+doc3);
         out.close();
         out2.close();
+=======
+        //PrintWriter out = new PrintWriter("C:\\Users\\lorraine\\Desktop\\myfile.txt");
+        //need to use absolute path here
+        PrintWriter out= new PrintWriter(new BufferedWriter(new FileWriter("myfile.txt", true)));
+        //append to the existing feedback doc or open a new file
+	      out.println(results);
+        out.println("Rank 1: "+ doc1);
+        out.println("Rank 2: "+doc2);
+        out.println("Rank 3: "+doc3);
+        out.close();
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
         }catch (IOException e){
         System.out.println("IO Error");
         }
