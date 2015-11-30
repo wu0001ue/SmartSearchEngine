@@ -51,9 +51,7 @@
 </div>
      
     <br>
-	<br>
-<<<<<<< HEAD
-<<<<<<< HEAD
+  <br>
         
         <select class="form-control" name="layer">
                             <option value="0" selected='selected'> Layer </option>
@@ -69,25 +67,21 @@
   </select>
         <br>
         <br>
-=======
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
-=======
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
-	<form action="SearchEngineServlet">
-	Search Term: <input name="search_term" value=""><br>
-	<br>
-	<!--<input type="submit" value="Enter Search Term">-->
-	<button type="submit" class="btn btn-success">Enter Key Word</button>
-	</form>
-	<br>
-	</div>
-	</div>
+  <form action="SearchEngineServlet">
+  Search Term: <input name="search_term" value=""><br>
+  <br>
+  <!--<input type="submit" value="Enter Search Term">-->
+  <button type="submit" class="btn btn-success">Enter Key Word</button>
+  </form>
+  <br>
+  </div>
+  </div>
   
-	<div class="panel panel-default">
+  <div class="panel panel-default">
                     <div class="panel-heading"><b>Files Returned</b></div>
                 <div class="panel-body">
                     <%= request.getAttribute("testTerm")%>
-		</div>
+    </div>
         </div>
   </div>
   <div class="col-md-2"></div>

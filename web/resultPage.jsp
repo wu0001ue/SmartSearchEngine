@@ -54,55 +54,35 @@
 </div>
      
     <br>
-	<br>
-	<form action="SearchEngineServlet">
-	Search Term: <input name="search_term" value=""><br>
-	<br>
-	<!--<input type="submit" value="Enter Search Term">-->
-	<button type="submit" class="btn btn-success">Enter Key Word</button>
-	</form>
-	<br>
-	</div>
-	</div>
+  <br>
+  <form action="SearchEngineServlet">
+  Search Term: <input name="search_term" value=""><br>
+  <br>
+  <!--<input type="submit" value="Enter Search Term">-->
+  <button type="submit" class="btn btn-success">Enter Key Word</button>
+  </form>
+  <br>
+  </div>
+  </div>
   
-	<div class="panel panel-default">
+  <div class="panel panel-default">
                 <div class="panel-heading"><b>Files Returned</b></div>                
                 <div class="panel-body"> 
-<<<<<<< HEAD
-<<<<<<< HEAD
                     <% String searchTerm=(String) request.getAttribute("searchTest");%> 
-=======
-                    <% String searchTerm=(String) request.getAttribute("searchTest");%>
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
-=======
-                    <% String searchTerm=(String) request.getAttribute("searchTest");%>
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
                     <% ArrayList<String> results = (ArrayList<String>) request.getAttribute("searchResult"); %>  
                     <% StringBuilder sb = new StringBuilder();
                     sb.append("Search Term: "+searchTerm+"\n");
                     sb.append("Documents Retrieved: ");%>
                     <% for (String r:results) { %>
                     <tr>
-<<<<<<< HEAD
-<<<<<<< HEAD
                         <td><a href="<%= r.split(",")[0]%>"><%=r.split(",")[0]%> </a></td> <br> 
                         <td><%= r.split(",")[1] %></td> <br>
                     </tr> 
                    
-=======
-                        <td><%= r.split(",")[0] %></td> <br>
-                        <td><%= r.split(",")[1] %></td> <br>
-                    </tr>
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
-=======
-                        <td><%= r.split(",")[0] %></td> <br>
-                        <td><%= r.split(",")[1] %></td> <br>
-                    </tr>
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
                     <% sb.append(r.split(",")[0]);} %>                          
                 <br>
-		<p><b>Which are the top 3 most relevant articles?</b></p>
-			
+    <p><b>Which are the top 3 most relevant articles?</b></p>
+      
                 <form class="form-inline" action="Feedback">
                     <div class="form-group">
                         <div class="col-xs-4">
@@ -117,7 +97,7 @@
                         <label for="article3">Rank 3</label>
                         <input type="text" class="form-control" id="doc3" name="doc3" placeholder="(article number)">
                         </div>
-		<br><br>
+    <br><br>
                 <!--button type="submit" class="btn btn-primary" onclick = "genFile()" id="submitBtn">Send Feedback</button>
                 <p id="demo"></p>
                 <script>
@@ -127,7 +107,7 @@
                 </script-->
                 <button type="submit" class="btn btn-primary"  name="feedbackbut" value="<%=sb.toString()%>">Send Feedback</button>
                 </div>
-		</form>
+    </form>
         </div>
   </div>
   <div class="col-md-2"></div>
