@@ -20,7 +20,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.UUID;
+=======
+
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 =======
 
 >>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
@@ -62,6 +66,7 @@ public class Feedback extends HttpServlet {
     public void writeFeedback(String doc1,String doc2,String doc3,String results){
         try{
 <<<<<<< HEAD
+<<<<<<< HEAD
         UUID uid=UUID.randomUUID();
         //PrintWriter out = new PrintWriter("C:\\Users\\lorraine\\Desktop\\myfile.txt");
         PrintWriter out= new PrintWriter(new BufferedWriter(new FileWriter("C:\\Users\\lorraine\\Desktop\\querylog.txt", true)));
@@ -76,6 +81,8 @@ public class Feedback extends HttpServlet {
         out.close();
         out2.close();
 =======
+=======
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
         //PrintWriter out = new PrintWriter("C:\\Users\\lorraine\\Desktop\\myfile.txt");
         //need to use absolute path here
         PrintWriter out= new PrintWriter(new BufferedWriter(new FileWriter("myfile.txt", true)));
@@ -85,6 +92,9 @@ public class Feedback extends HttpServlet {
         out.println("Rank 2: "+doc2);
         out.println("Rank 3: "+doc3);
         out.close();
+<<<<<<< HEAD
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
+=======
 >>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
         }catch (IOException e){
         System.out.println("IO Error");

@@ -53,6 +53,7 @@
     <br>
 	<br>
 <<<<<<< HEAD
+<<<<<<< HEAD
         
         <select class="form-control" name="layer">
                             <option value="0" selected='selected'> Layer </option>
@@ -68,6 +69,8 @@
   </select>
         <br>
         <br>
+=======
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 =======
 >>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 	<form action="SearchEngineServlet">

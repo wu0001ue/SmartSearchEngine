@@ -1,8 +1,11 @@
 import java.io.IOException;
 import java.io.StringReader;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.HashMap;
+=======
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 =======
 >>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 
@@ -27,11 +30,17 @@ import org.xml.sax.SAXException;
 public class LuceneTester {
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
    //String indexDir = "./src/java/index";
    String indexDir = "C:\\Users\\lorraine\\Downloads\\SmartSearchEngine-master\\SmartSearchEngine-master\\src\\java\\index";
    int k = indexDir.hashCode();
    //String dataDir = "./src/java/data";
    String dataDir = "C:\\Users\\lorraine\\Downloads\\SmartSearchEngine-master\\SmartSearchEngine-master\\src\\java\\data";
+=======
+   String indexDir = "./index";
+   int k = indexDir.hashCode();
+   String dataDir = "./data";
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 =======
    String indexDir = "./index";
    int k = indexDir.hashCode();
@@ -47,7 +56,11 @@ public class LuceneTester {
          tester = new LuceneTester();
          tester.createIndex();
 <<<<<<< HEAD
+<<<<<<< HEAD
          tester.search("search engine");
+=======
+         tester.search("SmartFusion2");
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 =======
          tester.search("SmartFusion2");
 >>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
@@ -74,6 +87,7 @@ public class LuceneTester {
    }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
    public ArrayList<String> search(String searchQuery) throws IOException, ParseException{
 	  QueryParser parser = new QueryParser(Version.LUCENE_43,LuceneConstants.CONTENTS,this.analyzer);
 	  Query q = parser.parse(searchQuery);
@@ -84,6 +98,8 @@ public class LuceneTester {
           ArrayList<String> results = new ArrayList<String>();
           
 =======
+=======
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
    private void search(String searchQuery) throws IOException, ParseException{
 	  QueryParser parser = new QueryParser(Version.LUCENE_43,LuceneConstants.CONTENTS,this.analyzer);
 	  Query q = parser.parse(searchQuery);
@@ -92,6 +108,9 @@ public class LuceneTester {
 	  QueryScorer scorer = new QueryScorer(q,LuceneConstants.CONTENTS);
 	  Highlighter highlighter = new Highlighter(formatter,scorer);
 	  highlighter.setTextFragmenter(new SimpleSpanFragmenter(scorer));
+<<<<<<< HEAD
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
+=======
 >>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
       searcher = new Searcher(indexDir);
       long startTime = System.currentTimeMillis();
@@ -100,6 +119,7 @@ public class LuceneTester {
    
       System.out.println(hits.totalHits +
          " documents found. Time :" + (endTime - startTime));
+<<<<<<< HEAD
 <<<<<<< HEAD
       String result = null;
 
@@ -130,6 +150,8 @@ public class LuceneTester {
    }
       
 =======
+=======
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
       //TokenStream tokens = null;
       String result = null;
       
@@ -149,5 +171,8 @@ public class LuceneTester {
       }
       searcher.close();
    }
+<<<<<<< HEAD
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
+=======
 >>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 }

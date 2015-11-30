@@ -57,8 +57,13 @@ public class SearchEngineServlet extends HttpServlet {
                 //lt.search(searchTerm);
                 ArrayList<String> results = lt.testSearch(searchTerm);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 request.setAttribute("searchResult", results); 
                 request.setAttribute("searchTest", searchTerm); //newly added line
+=======
+                request.setAttribute("searchTest", searchTerm);
+                request.setAttribute("searchResult", results);              
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 =======
                 request.setAttribute("searchTest", searchTerm);
                 request.setAttribute("searchResult", results);              

@@ -69,7 +69,11 @@
                 <div class="panel-heading"><b>Files Returned</b></div>                
                 <div class="panel-body"> 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <% String searchTerm=(String) request.getAttribute("searchTest");%> 
+=======
+                    <% String searchTerm=(String) request.getAttribute("searchTest");%>
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 =======
                     <% String searchTerm=(String) request.getAttribute("searchTest");%>
 >>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
@@ -80,10 +84,16 @@
                     <% for (String r:results) { %>
                     <tr>
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <td><a href="<%= r.split(",")[0]%>"><%=r.split(",")[0]%> </a></td> <br> 
                         <td><%= r.split(",")[1] %></td> <br>
                     </tr> 
                    
+=======
+                        <td><%= r.split(",")[0] %></td> <br>
+                        <td><%= r.split(",")[1] %></td> <br>
+                    </tr>
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 =======
                         <td><%= r.split(",")[0] %></td> <br>
                         <td><%= r.split(",")[1] %></td> <br>

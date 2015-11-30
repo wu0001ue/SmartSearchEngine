@@ -8,6 +8,7 @@
             <web-module-libraries>
                 <library dirs="200">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <file>${file.reference.commons-logging-1.1.1.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -28,6 +29,8 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+=======
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
 =======
 >>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
                     <file>${file.reference.lucene-highlighter-4.3.0.jar}</file>
@@ -73,15 +76,21 @@
             <web-module-additional-libraries/>
             <source-roots>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <root id="src.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>
 =======
+=======
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
                 <root id="src.dir" name="Source Packages"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir" name="Test Packages"/>
+<<<<<<< HEAD
+>>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
+=======
 >>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
             </test-roots>
         </data>
