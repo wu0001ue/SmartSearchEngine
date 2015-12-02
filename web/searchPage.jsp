@@ -24,12 +24,12 @@
   <h1>Intel Search Engine</h1>
   <p>CMU MISM Capstone Project</p>
    
-  
+  <form action="SearchEngineServlet">
   <select class="form-control" name="role">
-                            <option value="0" selected='selected'> Role </option>
-                            <option value="1"> Architect </option>
-                            <option value="2"> Designer </option>
-                            <option value="3"> Tester </option>
+                            <option value="Role" selected='selected'> Role </option>
+                            <option value="Architect"> Architect </option>
+                            <option value="Designer"> Designer </option>
+                            <option value="Tester"> Tester </option>
   </select>
   
   <br>
@@ -38,42 +38,37 @@
   <div class="col-lg-6">
   <div class="input-group">
   <span class="input-group-addon" id="param1">param1</span>
-  <input type="text" class="form-control" placeholder="weight1" aria-describedby="basic-addon1">
+  <input type="text" class="form-control" placeholder="weight1" aria-describedby="basic-addon1" name="param1">
 </div>
 </div>
 
 <div class="col-lg-6">
 <div class="input-group">
   <span class="input-group-addon" id="param2">param2</span>
-  <input type="text" class="form-control" placeholder="weight2" aria-describedby="basic-addon1">
+  <input type="text" class="form-control" placeholder="weight2" aria-describedby="basic-addon1" name="param2">
 </div>
 </div>
 </div>
      
     <br>
 	<br>
-<<<<<<< HEAD
-<<<<<<< HEAD
         
         <select class="form-control" name="layer">
-                            <option value="0" selected='selected'> Layer </option>
-                            <option value="1"> Configuration Layer Relative to Full Chip </option>
-                            <option value="2"> Fuse Info Layer for Test Boundary </option>
-                            <option value="3"> Tester Precondition </option>
-                            <option value="4"> State Equation Computation Layer</option>
-                            <option value="5"> IP Configuration Layer</option>
-                            <option value="6"> Algorithm/Structured Data Layer</option>
-                            <option value="7"> Observability Layer</option>
-                            <option value="8"> Output Management</option>
-                            <option value="9"> Checking: Parametric or Fixed Value</option>
-  </select>
+                            <option value="Layer" selected='selected'> Layer </option>
+                            <option value="Configuration Layer Relative to Full Chip"> Configuration Layer Relative to Full Chip </option>
+                            <option value="Fuse Info Layer for Test Boundary"> Fuse Info Layer for Test Boundary </option>
+                            <option value="Tester Precondition"> Tester Precondition </option>
+                            <option value="State Equation Computation Layer"> State Equation Computation Layer</option>
+                            <option value="IP Configuration Layer"> IP Configuration Layer</option>
+                            <option value="Algorithm/Structured Data Layer"> Algorithm/Structured Data Layer</option>
+                            <option value="Observability Layer"> Observability Layer</option>
+                            <option value="Output Management"> Output Management</option>
+                            <option value="Checking: Parametric or Fixed Value"> Checking: Parametric or Fixed Value</option>
+        </select>
         <br>
         <br>
-=======
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
-=======
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
-	<form action="SearchEngineServlet">
+        
+	
 	Search Term: <input name="search_term" value=""><br>
 	<br>
 	<!--<input type="submit" value="Enter Search Term">-->

@@ -4,13 +4,8 @@
  * and open the template in the editor.
  */
 
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,11 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
  * @author maywu
  */
-@WebServlet(name = "SearchEngineServlet",
-        urlPatterns = {"/SearchEngineServlet"})
+@WebServlet(name = "SearchEngineServlet", urlPatterns = {"/SearchEngineServlet"})
 public class SearchEngineServlet extends HttpServlet {
     LuceneTester lt = null;
     @Override
@@ -47,6 +40,7 @@ public class SearchEngineServlet extends HttpServlet {
         String param2 = request.getParameter("param2"); // Place holder
         String searchTerm = request.getParameter("search_term");
         String role = request.getParameter("role");
+        String layer = request.getParameter("layer");
         
         String nextView = "";
         if (searchTerm == null ) {
@@ -56,18 +50,12 @@ public class SearchEngineServlet extends HttpServlet {
             try {
                 //lt.search(searchTerm);
                 ArrayList<String> results = lt.testSearch(searchTerm);
-<<<<<<< HEAD
-<<<<<<< HEAD
                 request.setAttribute("searchResult", results); 
                 request.setAttribute("searchTest", searchTerm); //newly added line
-=======
-                request.setAttribute("searchTest", searchTerm);
-                request.setAttribute("searchResult", results);              
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
-=======
-                request.setAttribute("searchTest", searchTerm);
-                request.setAttribute("searchResult", results);              
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
+                request.setAttribute("role",role);
+                request.setAttribute("layer",layer);
+                request.setAttribute("param1",param1);
+                request.setAttribute("param2",param2);
                 nextView = "resultPage.jsp";
             } catch (Exception e) {
                 e.printStackTrace();
@@ -77,8 +65,7 @@ public class SearchEngineServlet extends HttpServlet {
         // Transfer control over the the correct "view"
         RequestDispatcher view = request.getRequestDispatcher(nextView);
         view.forward(request, response); 
-        
-    
+          
     }
 
 }

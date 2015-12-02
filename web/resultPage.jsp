@@ -5,7 +5,6 @@
     Author     : maywu, yinting
 --%>
 
-
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
@@ -68,38 +67,29 @@
 	<div class="panel panel-default">
                 <div class="panel-heading"><b>Files Returned</b></div>                
                 <div class="panel-body"> 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <% String searchTerm=(String) request.getAttribute("searchTest");%> 
-=======
-                    <% String searchTerm=(String) request.getAttribute("searchTest");%>
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
-=======
-                    <% String searchTerm=(String) request.getAttribute("searchTest");%>
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
+                    <% String searchTerm=(String) request.getAttribute("searchTest");
+                       String role = (String) request.getAttribute("role");
+                        String layer = (String) request.getAttribute("layer");
+                        String param1 = (String) request.getAttribute("param1");
+                        String param2 = (String) request.getAttribute("param2");%> 
                     <% ArrayList<String> results = (ArrayList<String>) request.getAttribute("searchResult"); %>  
                     <% StringBuilder sb = new StringBuilder();
-                    sb.append("Search Term: "+searchTerm+"\n");
-                    sb.append("Documents Retrieved: ");%>
-                    <% for (String r:results) { %>
+                    sb.append("<role>"+role+"</role>");
+                    sb.append("<layer>"+layer+"</layer>");
+                    sb.append("<param1>"+param1+"</param1>");
+                    sb.append("<param2>"+param2+"</param2>");
+                    sb.append("<SearchTerm>"+searchTerm+"</SearchTerm>");
+                    sb.append("<DocumentsRetrieved>");
+                    %>
+                    <tr><%= results.get(results.size()-1) %></tr><br>
+                    <% for (String r:results.subList(0, results.size()-2)) { %>
                     <tr>
-<<<<<<< HEAD
-<<<<<<< HEAD
                         <td><a href="<%= r.split(",")[0]%>"><%=r.split(",")[0]%> </a></td> <br> 
                         <td><%= r.split(",")[1] %></td> <br>
                     </tr> 
                    
-=======
-                        <td><%= r.split(",")[0] %></td> <br>
-                        <td><%= r.split(",")[1] %></td> <br>
-                    </tr>
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
-=======
-                        <td><%= r.split(",")[0] %></td> <br>
-                        <td><%= r.split(",")[1] %></td> <br>
-                    </tr>
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
-                    <% sb.append(r.split(",")[0]);} %>                          
+                    <% sb.append(r.split(",")[0]);
+                        sb.append("</DocumentsRetrieved>");} %>                          
                 <br>
 		<p><b>Which are the top 3 most relevant articles?</b></p>
 			

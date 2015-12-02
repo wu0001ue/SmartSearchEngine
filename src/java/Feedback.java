@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author yinting
  */
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,15 +14,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.util.UUID;
-=======
-
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
-=======
-
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 @WebServlet(urlPatterns = {"/Feedback"})
 public class Feedback extends HttpServlet {
@@ -58,6 +48,7 @@ public class Feedback extends HttpServlet {
             String results= request.getParameter("feedbackbut");
             writeFeedback(doc1,doc2,doc3,results);
             out.println("User Input Captured!<br>");
+            out.println("<a href =\"searchPage.jsp\"> Return to Search Page </a>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,37 +56,26 @@ public class Feedback extends HttpServlet {
     
     public void writeFeedback(String doc1,String doc2,String doc3,String results){
         try{
-<<<<<<< HEAD
-<<<<<<< HEAD
         UUID uid=UUID.randomUUID();
         //PrintWriter out = new PrintWriter("C:\\Users\\lorraine\\Desktop\\myfile.txt");
-        PrintWriter out= new PrintWriter(new BufferedWriter(new FileWriter("C:\\Users\\lorraine\\Desktop\\querylog.txt", true)));
-        PrintWriter out2= new PrintWriter(new BufferedWriter(new FileWriter("C:\\Users\\lorraine\\Desktop\\rating.txt", true)));
+        //PrintWriter out= new PrintWriter(new BufferedWriter(new FileWriter("C:\\Users\\lorraine\\Desktop\\querylog.txt", true)));
+        //String path=new File(".").getAbsolutePath();
+        PrintWriter out= new PrintWriter(new BufferedWriter(new FileWriter("querylog.xml", true)));
+        PrintWriter out2= new PrintWriter(new BufferedWriter(new FileWriter("rating.xml", true)));
         //append to the existing feedback doc or open a new file
-	out.println("uuid: "+uid);
+        //default path at glassfish domains folder
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	//get current date time with Date()
+	Date date = new Date();
+	out.println("<uuid>"+uid+"</uuid>");
         out.println(results);
-        out2.println("uuid: "+uid);
-        out2.println("Rank 1: "+ doc1);
-        out2.println("Rank 2: "+doc2);
-        out2.println("Rank 3: "+doc3);
+        out.println("<datetime>"+dateFormat.format(date)+"</datetime>");
+        out2.println("<uuid>"+uid+"</uuid>");
+        out2.println("<Rank1>"+ doc1+"</Rank1>");
+        out2.println("<Rank2>"+doc2+"</Rank2>");
+        out2.println("<Rank3>"+doc3+"</Rank3>");
         out.close();
         out2.close();
-=======
-=======
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
-        //PrintWriter out = new PrintWriter("C:\\Users\\lorraine\\Desktop\\myfile.txt");
-        //need to use absolute path here
-        PrintWriter out= new PrintWriter(new BufferedWriter(new FileWriter("myfile.txt", true)));
-        //append to the existing feedback doc or open a new file
-	      out.println(results);
-        out.println("Rank 1: "+ doc1);
-        out.println("Rank 2: "+doc2);
-        out.println("Rank 3: "+doc3);
-        out.close();
-<<<<<<< HEAD
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
-=======
->>>>>>> 723cfeb200eff43d308af2dee9cd3a39d3c97d88
         }catch (IOException e){
         System.out.println("IO Error");
         }
