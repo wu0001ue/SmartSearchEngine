@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,12 +21,32 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "SearchEngineServlet", urlPatterns = {"/SearchEngineServlet"})
 public class SearchEngineServlet extends HttpServlet {
+    static final String CONFIG_FILE = "config.txt";
     LuceneTester lt = null;
+    HashMap<String, String> params = new HashMap<String, String>();
     @Override
     public void init(){
         lt = new LuceneTester();
+        Path currentPath = Paths.get("");
+        String s = currentPath.toAbsolutePath().toString();
+        System.out.println("Current path: " + s);
+        readConfigFile();
     }
-
+    
+    private void readConfigFile() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(CONFIG_FILE));
+            String line = null;
+            while ((line = br.readLine()) != null){
+                int d = line.indexOf(":");
+                String field = line.substring(0, d);
+                String value = line.substring(d + 1);
+                params.put(field, value);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -49,7 +72,8 @@ public class SearchEngineServlet extends HttpServlet {
         } else {
             try {
                 //lt.search(searchTerm);
-                ArrayList<String> results = lt.testSearch(searchTerm);
+                boolean buildIndex = params.get("rebuildIndex").equalsIgnoreCase("true");
+                ArrayList<String> results = lt.testSearch(searchTerm, buildIndex);
                 request.setAttribute("searchResult", results); 
                 request.setAttribute("searchTest", searchTerm); //newly added line
                 request.setAttribute("role",role);

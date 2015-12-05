@@ -81,8 +81,11 @@
                     sb.append("<SearchTerm>"+searchTerm+"</SearchTerm>");
                     sb.append("<DocumentsRetrieved>");
                     %>
+            
                     <tr><%= results.get(results.size()-1) %></tr><br>
-                    <% for (String r:results.subList(0, results.size()-2)) { %>
+<!--            Only show the result section if files are found-->
+            <% if (results.size()>1) { %>
+                    <% for (String r:results.subList(0, results.size()-1)) { %>
                     <tr>
                         <td><a href="<%= r.split(",")[0]%>"><%=r.split(",")[0]%> </a></td> <br> 
                         <td><%= r.split(",")[1] %></td> <br>
@@ -91,8 +94,8 @@
                     <% sb.append(r.split(",")[0]);
                         sb.append("</DocumentsRetrieved>");} %>                          
                 <br>
-		<p><b>Which are the top 3 most relevant articles?</b></p>
-			
+            
+		<p><b>Which are the top 3 most relevant articles?</b></p>			
                 <form class="form-inline" action="Feedback">
                     <div class="form-group">
                         <div class="col-xs-4">
@@ -115,8 +118,9 @@
                         document.getElementById("demo").innerHTML = "Hello World";
                     }
                 </script-->
-                <button type="submit" class="btn btn-primary"  name="feedbackbut" value="<%=sb.toString()%>">Send Feedback</button>
+                <button type="submit" class="btn btn-primary"  name="feedbackbut" value="<%=sb.toString()%>">Send Feedback</button>                
                 </div>
+                <% } %>
 		</form>
         </div>
   </div>

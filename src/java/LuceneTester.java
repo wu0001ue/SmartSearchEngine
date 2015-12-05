@@ -1,11 +1,5 @@
 import java.io.IOException;
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.HashMap;
->>>>>>> d3db43aea85cb9464e4bda8dff19c7675d64d440
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
@@ -26,21 +20,12 @@ import org.apache.tika.exception.TikaException;
 import org.xml.sax.SAXException;
 
 public class LuceneTester {
-<<<<<<< HEAD
 	
-   String indexDir = "./index";
+   String indexDir = "./src/java/index";
    //String indexDir = "C:\\Users\\lorraine\\Downloads\\SmartSearchEngine-master\\SmartSearchEngine-master\\src\\java\\index";
    int k = indexDir.hashCode();
-   String dataDir = "./data";
+   String dataDir = "./src/java/data";
    //String dataDir = "C:\\Users\\lorraine\\Downloads\\SmartSearchEngine-master\\SmartSearchEngine-master\\src\\java\\data";
-=======
-    
-   //String indexDir = "./src/java/index";
-   String indexDir = "C:\\Users\\lorraine\\Downloads\\SmartSearchEngine-master\\SmartSearchEngine-master\\src\\java\\index";
-   int k = indexDir.hashCode();
-   //String dataDir = "./src/java/data";
-   String dataDir = "C:\\Users\\lorraine\\Downloads\\SmartSearchEngine-master\\SmartSearchEngine-master\\src\\java\\data";
->>>>>>> d3db43aea85cb9464e4bda8dff19c7675d64d440
    Indexer indexer;
    Searcher searcher;
    Analyzer analyzer;
@@ -50,7 +35,7 @@ public class LuceneTester {
       try {
          tester = new LuceneTester();
          tester.createIndex();
-         tester.search("search engine");
+         tester.search("yuyu");
       } catch (IOException e) {
          e.printStackTrace();
       } catch (ParseException e) {
@@ -59,27 +44,27 @@ public class LuceneTester {
    }
    
    public LuceneTester() {
-       analyzer = new StandardAnalyzer(Version.LUCENE_43);
+	   analyzer = new StandardAnalyzer(Version.LUCENE_43);
    }
 
    private void createIndex() throws IOException, SAXException, TikaException{
       indexer = new Indexer(indexDir);
       int numIndexed;
-      long startTime = System.currentTimeMillis();  
+      long startTime = System.currentTimeMillis();	
       numIndexed = indexer.createIndex(dataDir, new TextFileFilter());
       long endTime = System.currentTimeMillis();
       indexer.close();
       System.out.println(numIndexed+" File indexed, time taken: "
-         +(endTime-startTime)+" ms");       
+         +(endTime-startTime)+" ms");		
    }
 
    public ArrayList<String> search(String searchQuery) throws IOException, ParseException{
-      QueryParser parser = new QueryParser(Version.LUCENE_43,LuceneConstants.CONTENTS,this.analyzer);
-      Query q = parser.parse(searchQuery);
-      SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<mark>","</mark>");
-      QueryScorer scorer = new QueryScorer(q,LuceneConstants.CONTENTS);
-      Highlighter highlighter = new Highlighter(formatter,scorer);
-      highlighter.setTextFragmenter(new SimpleSpanFragmenter(scorer));
+	  QueryParser parser = new QueryParser(Version.LUCENE_43,LuceneConstants.CONTENTS,this.analyzer);
+	  Query q = parser.parse(searchQuery);
+	  SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<mark>","</mark>");
+	  QueryScorer scorer = new QueryScorer(q,LuceneConstants.CONTENTS);
+	  Highlighter highlighter = new Highlighter(formatter,scorer);
+	  highlighter.setTextFragmenter(new SimpleSpanFragmenter(scorer));
           ArrayList<String> results = new ArrayList<String>();
           
       searcher = new Searcher(indexDir);
@@ -111,9 +96,11 @@ public class LuceneTester {
       return results;
    }
    
-   public ArrayList<String> testSearch(String searchQuery) throws IOException, ParseException, SAXException, TikaException {
-       createIndex();
+   // Search method that used by Servelet
+   public ArrayList<String> testSearch(String searchQuery, boolean buildIndex) throws IOException, ParseException, SAXException, TikaException {
+       if (buildIndex) createIndex();
        ArrayList<String> results = search(searchQuery);
+       System.out.print(buildIndex);
        return results;
    }
       

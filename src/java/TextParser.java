@@ -1,21 +1,16 @@
 /*
- * This class is used to convert pdf, word, and txt files
+ * This class is used to convert pdf and txt files
  * to lucene documents
  */
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.Reader;
 import java.io.StringReader;
-import java.net.URL;
 import java.util.*;
 
-import org.apache.tika.detect.DefaultDetector;
-import org.apache.tika.detect.Detector;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.io.TikaInputStream;
 import org.apache.tika.metadata.Metadata;
@@ -28,10 +23,24 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 
 public class TextParser {
+	/*
+	static Parser parser;
+	static ContentHandler handler = new BodyContentHandler(-1);
+	static Metadata md;*/
+	//private ContenHandler handler = new ContentHandler(-1);
+	//Metadata to be extract
 	public static Set<String> metadataFields = new HashSet<String>();
-	
+	/*
+		Collections.unmodifiableSet(Metadata.RESOURCE_NAME_KEY,
+				Metadata.AUTHOR,Metadata.COMMENTS,
+				Metadata.KEYWORDS,Metadata.TITLE,
+				Metadata.LAST_MODIFIED.getName(),
+				Metadata.LAST_SAVED.getName());
+
+	*/
 	@SuppressWarnings("deprecation")
 	public TextParser() {
+		
 		metadataFields.add(Metadata.RESOURCE_NAME_KEY);
 		metadataFields.add(Metadata.COMMENTS);
 		metadataFields.add(Metadata.AUTHOR);
@@ -40,10 +49,8 @@ public class TextParser {
 		metadataFields.add(Metadata.LAST_MODIFIED.getName());
 		metadataFields.add(Metadata.LAST_SAVED.getName());
 	}
-	
-	public String parsePDF(File file) throws IOException, SAXException, TikaException {
+	public String parse(File file) throws IOException, SAXException, TikaException {
 		Metadata md = new Metadata();
-		md.add(Metadata.CONTENT_ENCODING, "UTF-8");
 		ContentHandler handler = new BodyContentHandler(-1);
 		PDFParser p = new PDFParser();
 		//TikaInputStream in = TikaInputStream.get(file,md);
@@ -58,27 +65,16 @@ public class TextParser {
 				md.remove(name);
 		return handler.toString();
 	}
-	
-	public String parseWord(File file) throws IOException, SAXException, TikaException {
-		ParseContext context = new ParseContext();
-        Detector detector = new DefaultDetector();
-        Parser parser = new AutoDetectParser(detector);
-        context.set(Parser.class, parser);
-        OutputStream outputstream = new ByteArrayOutputStream();
-		Metadata md = new Metadata();
-		md.add(Metadata.CONTENT_ENCODING, "UTF-8");
-		//ContentHandler handler = new BodyContentHandler(-1);
-		URL url;
-        //File file = new File(filename);
-        if (file.isFile()) {
-            url = file.toURI().toURL();
-        } else {
-            url = new URL(file.getName());
-        }
-        InputStream input = TikaInputStream.get(url, md);
-        ContentHandler handler = new BodyContentHandler(outputstream);
-        parser.parse(input, handler, md, context); 
-        input.close();
-        return outputstream.toString();
+	/*
+	public String getText()
+	{
+		return handler.toString();
 	}
+	
+	//return the text stream
+	public Reader getReader()
+	{
+		return new StringReader(handler.toString());
+	}*/
+
 }

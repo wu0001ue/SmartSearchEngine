@@ -53,29 +53,25 @@
 </div>
      
     <br>
-  <br>
-  <form action="SearchEngineServlet">
-  Search Term: <input name="search_term" value=""><br>
-  <br>
-  <!--<input type="submit" value="Enter Search Term">-->
-  <button type="submit" class="btn btn-success">Enter Key Word</button>
-  </form>
-  <br>
-  </div>
-  </div>
+	<br>
+	<form action="SearchEngineServlet">
+	Search Term: <input name="search_term" value=""><br>
+	<br>
+	<!--<input type="submit" value="Enter Search Term">-->
+	<button type="submit" class="btn btn-success">Enter Key Word</button>
+	</form>
+	<br>
+	</div>
+	</div>
   
-  <div class="panel panel-default">
+	<div class="panel panel-default">
                 <div class="panel-heading"><b>Files Returned</b></div>                
                 <div class="panel-body"> 
-<<<<<<< HEAD
                     <% String searchTerm=(String) request.getAttribute("searchTest");
                        String role = (String) request.getAttribute("role");
                         String layer = (String) request.getAttribute("layer");
                         String param1 = (String) request.getAttribute("param1");
                         String param2 = (String) request.getAttribute("param2");%> 
-=======
-                    <% String searchTerm=(String) request.getAttribute("searchTest");%> 
->>>>>>> d3db43aea85cb9464e4bda8dff19c7675d64d440
                     <% ArrayList<String> results = (ArrayList<String>) request.getAttribute("searchResult"); %>  
                     <% StringBuilder sb = new StringBuilder();
                     sb.append("<role>"+role+"</role>");
@@ -85,22 +81,21 @@
                     sb.append("<SearchTerm>"+searchTerm+"</SearchTerm>");
                     sb.append("<DocumentsRetrieved>");
                     %>
+            
                     <tr><%= results.get(results.size()-1) %></tr><br>
-                    <% for (String r:results.subList(0, results.size()-2)) { %>
+<!--            Only show the result section if files are found-->
+            <% if (results.size()>1) { %>
+                    <% for (String r:results.subList(0, results.size()-1)) { %>
                     <tr>
                         <td><a href="<%= r.split(",")[0]%>"><%=r.split(",")[0]%> </a></td> <br> 
                         <td><%= r.split(",")[1] %></td> <br>
                     </tr> 
                    
-<<<<<<< HEAD
                     <% sb.append(r.split(",")[0]);
                         sb.append("</DocumentsRetrieved>");} %>                          
-=======
-                    <% sb.append(r.split(",")[0]);} %>                          
->>>>>>> d3db43aea85cb9464e4bda8dff19c7675d64d440
                 <br>
-    <p><b>Which are the top 3 most relevant articles?</b></p>
-      
+            
+		<p><b>Which are the top 3 most relevant articles?</b></p>			
                 <form class="form-inline" action="Feedback">
                     <div class="form-group">
                         <div class="col-xs-4">
@@ -115,7 +110,7 @@
                         <label for="article3">Rank 3</label>
                         <input type="text" class="form-control" id="doc3" name="doc3" placeholder="(article number)">
                         </div>
-    <br><br>
+		<br><br>
                 <!--button type="submit" class="btn btn-primary" onclick = "genFile()" id="submitBtn">Send Feedback</button>
                 <p id="demo"></p>
                 <script>
@@ -123,9 +118,10 @@
                         document.getElementById("demo").innerHTML = "Hello World";
                     }
                 </script-->
-                <button type="submit" class="btn btn-primary"  name="feedbackbut" value="<%=sb.toString()%>">Send Feedback</button>
+                <button type="submit" class="btn btn-primary"  name="feedbackbut" value="<%=sb.toString()%>">Send Feedback</button>                
                 </div>
-    </form>
+                <% } %>
+		</form>
         </div>
   </div>
   <div class="col-md-2"></div>
