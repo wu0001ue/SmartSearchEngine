@@ -49,10 +49,23 @@
   <span class="input-group-addon" id="param2">param2</span>
   <input type="text" class="form-control" placeholder="weight2" aria-describedby="basic-addon1">
 </div>
+</div>     
 </div>
-</div>
-     
-    <br>
+      <br>
+
+        <select class="form-control" name="layer">
+                            <option value="Layer" selected='selected'> Layer </option>
+                            <option value="Configuration Layer Relative to Full Chip"> Configuration Layer Relative to Full Chip </option>
+                            <option value="Fuse Info Layer for Test Boundary"> Fuse Info Layer for Test Boundary </option>
+                            <option value="Tester Precondition"> Tester Precondition </option>
+                            <option value="State Equation Computation Layer"> State Equation Computation Layer</option>
+                            <option value="IP Configuration Layer"> IP Configuration Layer</option>
+                            <option value="Algorithm/Structured Data Layer"> Algorithm/Structured Data Layer</option>
+                            <option value="Observability Layer"> Observability Layer</option>
+                            <option value="Output Management"> Output Management</option>
+                            <option value="Checking: Parametric or Fixed Value"> Checking: Parametric or Fixed Value</option>
+        </select>
+        <br>
 	<br>
 	<form action="SearchEngineServlet">
 	Search Term: <input name="search_term" value=""><br>
