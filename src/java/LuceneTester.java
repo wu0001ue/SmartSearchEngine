@@ -35,7 +35,7 @@ public class LuceneTester {
       try {
          tester = new LuceneTester();
          tester.createIndex();
-         tester.search("yuyu");
+         tester.search("yuyu", null);
       } catch (IOException e) {
          e.printStackTrace();
       } catch (ParseException e) {
@@ -58,10 +58,15 @@ public class LuceneTester {
          +(endTime-startTime)+" ms");		
    }
 
-   public ArrayList<String> search(String searchQuery) throws IOException, ParseException{
+   public ArrayList<String> search(String searchQuery, String textOnly) throws IOException, ParseException{
 	  QueryParser parser = new QueryParser(Version.LUCENE_43,LuceneConstants.CONTENTS,this.analyzer);
 	  Query q = parser.parse(searchQuery);
-	  SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<mark>","</mark>");
+	  SimpleHTMLFormatter formatter; 
+          if (textOnly != null && textOnly.equalsIgnoreCase("true")) {
+              formatter = new SimpleHTMLFormatter("","");
+          } else {
+              formatter = new SimpleHTMLFormatter("<mark>","</mark>");
+          }
 	  QueryScorer scorer = new QueryScorer(q,LuceneConstants.CONTENTS);
 	  Highlighter highlighter = new Highlighter(formatter,scorer);
 	  highlighter.setTextFragmenter(new SimpleSpanFragmenter(scorer));
@@ -97,9 +102,9 @@ public class LuceneTester {
    }
    
    // Search method that used by Servelet
-   public ArrayList<String> testSearch(String searchQuery, boolean buildIndex) throws IOException, ParseException, SAXException, TikaException {
+   public ArrayList<String> testSearch(String searchQuery, boolean buildIndex, String textOnly) throws IOException, ParseException, SAXException, TikaException {
        if (buildIndex) createIndex();
-       ArrayList<String> results = search(searchQuery);
+       ArrayList<String> results = search(searchQuery, textOnly);
        System.out.print(buildIndex);
        return results;
    }

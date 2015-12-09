@@ -64,6 +64,7 @@ public class SearchEngineServlet extends HttpServlet {
         String searchTerm = request.getParameter("search_term");
         String role = request.getParameter("role");
         String layer = request.getParameter("layer");
+        String textOnly = request.getParameter("text_only");
         
         String nextView = "";
         if (searchTerm == null ) {
@@ -73,14 +74,25 @@ public class SearchEngineServlet extends HttpServlet {
             try {
                 //lt.search(searchTerm);
                 boolean buildIndex = params.get("rebuildIndex").equalsIgnoreCase("true");
-                ArrayList<String> results = lt.testSearch(searchTerm, buildIndex);
-                request.setAttribute("searchResult", results); 
-                request.setAttribute("searchTest", searchTerm); //newly added line
-                request.setAttribute("role",role);
-                request.setAttribute("layer",layer);
-                request.setAttribute("param1",param1);
-                request.setAttribute("param2",param2);
-                nextView = "resultPage.jsp";
+                ArrayList<String> results = lt.testSearch(searchTerm, buildIndex, textOnly);
+                if (textOnly != null && textOnly.equalsIgnoreCase("true")) {
+                    response.setContentType("text/plain");
+                    PrintWriter pw = response.getWriter();
+                    for (String t : results) {
+                        pw.write(t);
+                        pw.write('\n');
+                    }
+                    pw.flush();
+                    pw.close();
+                } else {
+                    request.setAttribute("searchResult", results); 
+                    request.setAttribute("searchTest", searchTerm); //newly added line
+                    request.setAttribute("role",role);
+                    request.setAttribute("layer",layer);
+                    request.setAttribute("param1",param1);
+                    request.setAttribute("param2",param2);
+                    nextView = "resultPage.jsp";
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
