@@ -49,10 +49,10 @@
   <span class="input-group-addon" id="param2">param2</span>
   <input type="text" class="form-control" placeholder="weight2" aria-describedby="basic-addon1">
 </div>
-</div>     
 </div>
-      <br>
-
+</div>
+        <br>
+	<br>       
         <select class="form-control" name="layer">
                             <option value="Layer" selected='selected'> Layer </option>
                             <option value="Configuration Layer Relative to Full Chip"> Configuration Layer Relative to Full Chip </option>
@@ -65,7 +65,7 @@
                             <option value="Output Management"> Output Management</option>
                             <option value="Checking: Parametric or Fixed Value"> Checking: Parametric or Fixed Value</option>
         </select>
-        <br>
+        <br>     
 	<br>
 	<form action="SearchEngineServlet">
 	Search Term: <input name="search_term" value=""><br>
@@ -76,7 +76,7 @@
 	<br>
 	</div>
 	</div>
-  
+        
 	<div class="panel panel-default">
                 <div class="panel-heading"><b>Files Returned</b></div>                
                 <div class="panel-body"> 

@@ -35,7 +35,7 @@ public class SearchEngineServlet extends HttpServlet {
     
     private void readConfigFile() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader(CONFIG_FILE));
+            BufferedReader br = new BufferedReader(new FileReader("config.txt"));
             String line = null;
             while ((line = br.readLine()) != null){
                 int d = line.indexOf(":");
@@ -76,7 +76,6 @@ public class SearchEngineServlet extends HttpServlet {
                 boolean buildIndex = params.get("rebuildIndex").equalsIgnoreCase("true");
                 ArrayList<String> results = lt.testSearch(searchTerm, buildIndex, textOnly);
                 if (textOnly != null && textOnly.equalsIgnoreCase("true")) {
-                    response.setContentType("text/plain");
                     PrintWriter pw = response.getWriter();
                     for (String t : results) {
                         pw.write(t);
@@ -84,15 +83,14 @@ public class SearchEngineServlet extends HttpServlet {
                     }
                     pw.flush();
                     pw.close();
-                } else {
-                    request.setAttribute("searchResult", results); 
-                    request.setAttribute("searchTest", searchTerm); //newly added line
-                    request.setAttribute("role",role);
-                    request.setAttribute("layer",layer);
-                    request.setAttribute("param1",param1);
-                    request.setAttribute("param2",param2);
-                    nextView = "resultPage.jsp";
                 }
+                request.setAttribute("searchResult", results); 
+                request.setAttribute("searchTest", searchTerm); //newly added line
+                request.setAttribute("role",role);
+                request.setAttribute("layer",layer);
+                request.setAttribute("param1",param1);
+                request.setAttribute("param2",param2);
+                nextView = "resultPage.jsp";
             } catch (Exception e) {
                 e.printStackTrace();
             }

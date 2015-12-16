@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -20,12 +22,11 @@ import org.apache.tika.exception.TikaException;
 import org.xml.sax.SAXException;
 
 public class LuceneTester {
-	
-   String indexDir = "./src/java/index";
-   //String indexDir = "C:\\Users\\lorraine\\Downloads\\SmartSearchEngine-master\\SmartSearchEngine-master\\src\\java\\index";
+   //String indexDir = "./src/java/index";
+   String indexDir = "src\\java\\index"; //This is the path for windows machine
    int k = indexDir.hashCode();
-   String dataDir = "./src/java/data";
-   //String dataDir = "C:\\Users\\lorraine\\Downloads\\SmartSearchEngine-master\\SmartSearchEngine-master\\src\\java\\data";
+   //String dataDir = "./src/java/data";
+   String dataDir = "src\\java\\data"; // This is the path for windows machine
    Indexer indexer;
    Searcher searcher;
    Analyzer analyzer;
@@ -35,7 +36,7 @@ public class LuceneTester {
       try {
          tester = new LuceneTester();
          tester.createIndex();
-         tester.search("yuyu", null);
+         tester.search("search engine", null);
       } catch (IOException e) {
          e.printStackTrace();
       } catch (ParseException e) {
@@ -61,11 +62,11 @@ public class LuceneTester {
    public ArrayList<String> search(String searchQuery, String textOnly) throws IOException, ParseException{
 	  QueryParser parser = new QueryParser(Version.LUCENE_43,LuceneConstants.CONTENTS,this.analyzer);
 	  Query q = parser.parse(searchQuery);
-	  SimpleHTMLFormatter formatter; 
+	  SimpleHTMLFormatter formatter;
           if (textOnly != null && textOnly.equalsIgnoreCase("true")) {
               formatter = new SimpleHTMLFormatter("","");
           } else {
-              formatter = new SimpleHTMLFormatter("<mark>","</mark>");
+              formatter = new SimpleHTMLFormatter("<mark>", "</mark>");
           }
 	  QueryScorer scorer = new QueryScorer(q,LuceneConstants.CONTENTS);
 	  Highlighter highlighter = new Highlighter(formatter,scorer);
@@ -93,7 +94,7 @@ public class LuceneTester {
             System.out.println("File: "
             + doc.get(LuceneConstants.FILE_PATH));
             String filePath = doc.get(LuceneConstants.FILE_PATH);
-            String fileName = filePath.substring(filePath.lastIndexOf("/")+1);
+            String fileName = filePath.substring(filePath.lastIndexOf("\\")+1);
             results.add(fileName + "," + result );
       }
       searcher.close();
