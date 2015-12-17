@@ -23,10 +23,10 @@ import org.xml.sax.SAXException;
 
 public class LuceneTester {
    //String indexDir = "./src/java/index";
-   String indexDir = "src\\java\\index"; //This is the path for windows machine
+   String indexDir = "index"; //This is the path for windows machine. The default path is c:\glassfish_server\glassfish\domains\domain1\config. Please place "index" folder under this path.
    int k = indexDir.hashCode();
    //String dataDir = "./src/java/data";
-   String dataDir = "src\\java\\data"; // This is the path for windows machine
+   String dataDir = "data"; // This is the path for windows machine. The default path is c:\glassfish_server\glassfish\domains\domain1\config. Please place "data" folder under this path.
    Indexer indexer;
    Searcher searcher;
    Analyzer analyzer;
