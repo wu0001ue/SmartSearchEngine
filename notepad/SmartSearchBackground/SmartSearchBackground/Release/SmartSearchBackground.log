@@ -1,0 +1,9 @@
+﻿  SmartSearchBackground.cpp
+SmartSearchBackground.cpp(103): warning C4101: 'hwnd': unreferenced local variable
+SmartSearchBackground.cpp(149): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
+SmartSearchBackground.cpp(154): warning C4302: 'type cast': truncation from 'LPSTR' to 'WORD'
+  Generating code
+  All 223 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  SmartSearchBackground.vcxproj -> C:\Users\syucel\Documents\Visual Studio 2015\Projects\SmartSearchBackground\Release\SmartSearchBackground.exe
+  SmartSearchBackground.vcxproj -> C:\Users\syucel\Documents\Visual Studio 2015\Projects\SmartSearchBackground\Release\SmartSearchBackground.pdb (Full PDB)
